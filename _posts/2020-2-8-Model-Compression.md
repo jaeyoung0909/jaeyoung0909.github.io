@@ -3,7 +3,7 @@ Layout: post
 title: Model Compression
 ---
 
-## 한 줄 요약**
+## 한 줄 요약
 
 Ensemble 로 만든 모델을 이용하여 unlabeled 된 데이타를 labeled 시키고, 이렇게 얻어진 labeled 데이타를 작은 neural net 에 학습시킨다.
 
@@ -29,9 +29,15 @@ joint distribution 구하고 이 distribution 에서 sampling 하는 방법. joi
 
 ### MUNGE
 
-이 방법은 full joint distribution 을 구하기 위해 이 논문에서 제안한 알고리즘으로 방식은 간단하다. 데이타에서 하나를 고르고 euclidean distance 로 가장 가까운 벡터를 구한다. 이 두개의 벡터를 a, b 라 하자. 또 sb = |a[i] - b[i]|/s 라 하자.
+이 방법은 full joint distribution 을 구하기 위해 이 논문에서 제안한 알고리즘으로 방식은 간단하다. 데이타에서 하나를 고르고 euclidean distance 로 가장 가까운 벡터를 구한다. 이 두개의 벡터를 $a, b$ 라 하자. 또 $sb = |a[i] - b[i]|/s$ 라 하자.
 
-각 attribute 마다 p 의 확률로 a[i] = norm(b[i], sb), b[i] = norm(a[i], sb) 를 입력한다. 이 과정을 모든 데이타에 해준 뒤 이렇게 만들어진 데이타를 본 데이타에 포함시킨다.
+각 attribute 마다 $p$ 의 확률로 $a[i] = norm(b[i], sb), b[i] = norm(a[i], sb)$ 를 입력한다. 이 과정을 모든 데이타에 해준 뒤 이렇게 만들어진 데이타를 본 데이타에 포함시킨다.
+
+
+
+실제 이차원 데이타와 위의 세 가지 데이타 생성 모델을 이용하여 나온 결과물을 시각화한 그래프는 다음과 같다.
+
+<img src="../imgs/model_compression.png" alt="comparison of three model" style="zoom:80%;" />
 
 ## Conclusion
 
