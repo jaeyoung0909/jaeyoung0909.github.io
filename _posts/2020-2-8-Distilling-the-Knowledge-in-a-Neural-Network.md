@@ -30,3 +30,9 @@ Soft target 에 correct label 의 정보가 추가된다면 더 정확한 학습
 MNIST 데이타 셋에서 실험해 본 결과, distilled 된 모델이 그렇지 않은 모델에 비해 훨씬 더 잘 나왔다. unit per layer 가 300 정도로 많으면 T 값은 8 이상이 적당했고, 30 정도 수준이라면 2.5 - 4 에서 잘 동작했다. bias 만 잘 맞춰준다면, 못 본 라벨에 대해서도 맞추었다. digit 3 에 대한 예를 한 번도 보여주지 않은 distilled model 도 3에 대해 높은 정확도를 가졌다. 대신 이 경우엔 bias 를 조정해주어야 한다.
 
 Speech recognition 에서도 실험해 보았더니, Baseline 모델의 정확도가 58.9% 였고 이 모델 10개의 ensemble 이 61.1 % 의 정확도를 보여주었는데 distilled single model 이 60.8 % 의 정확도를 내었다. 
+
+## Ensemble with specialist models 
+
+cumbersome model 과 data 가 크지 않으면 위에서 언급한 방법으로 ensemble 을 해결 할 수 있지만 그렇지 않은 경우엔 병렬화해서 ensemble 시켜도 학습 시간이 길다. 이 문제는 애매한 label 만 분류하는 specialist model 을 global model 과 ensemble 하여 해결할 수 있다. 이렇게 했을 때 단점은 specialist model 의 overfitting 이 크다는 것인데, soft target 을 활용해서 보안할 수 있다. 먼저, general model 을 학습하고 그것의 weight 을 speical model 에 이식, data 의 반은 애매한 label, 나머지는 원래의 data 중 랜덤하게 뽑아서 training set 을 구성한 뒤 학습시킨다. 애매한 label 에 대한 cluster 는 generalist model 의 결과의 covariance matrix 의 column vector 에 K-means algorithm 을 적용해 구한다.
+
+KD 할 때 soft target 을 사용하는 것은 regularization 효과도 크다. 논문의 실험에 따르면, hard target 을 사용한 distilled model 은 soft target 을 사용한 것과 training accuracy 에서 큰 차이를 보이진 않았으나 test accuracy 에서 soft target 이 월등히 좋았다. Soft target 을 사용한 것은 알아서 수렴했기 때문에 early stopping 을 사용할 필요도 없었다.
