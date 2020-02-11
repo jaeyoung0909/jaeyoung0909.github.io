@@ -1,6 +1,7 @@
 ---
 Layout: post
 title: Model Compression
+use_math: true
 ---
 
 ## 한 줄 요약
