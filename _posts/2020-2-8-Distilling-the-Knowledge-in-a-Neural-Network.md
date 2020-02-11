@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Distilling the Knowledge in a Neural Network
+use_math: true
 ---
 
 ## 한 줄 요약
