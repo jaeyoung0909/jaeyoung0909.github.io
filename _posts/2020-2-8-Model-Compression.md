@@ -30,7 +30,7 @@ joint distribution 구하고 이 distribution 에서 sampling 하는 방법. joi
 
 ### MUNGE
 
-이 방법은 full joint distribution 을 구하기 위해 이 논문에서 제안한 알고리즘으로 방식은 간단하다. 데이타에서 하나를 고르고 euclidean distance 로 가장 가까운 벡터를 구한다. 이 두개의 벡터를 $a, b$ 라 하자. 또 $sb = |a[i] - b[i]|/s$ 라 하자.
+이 방법은 full joint distribution 을 구하기 위해 이 논문에서 제안한 알고리즘으로 방식은 간단하다. 데이타에서 하나를 고르고 euclidean distance 로 가장 가까운 벡터를 구한다. 이 두개의 벡터를 $a, b$ 라 하자. 또 $sb = \frac {|a[i] - b[i]|}{s}$ 라 하자.
 
 각 attribute 마다 $p$ 의 확률로 $a[i] = norm(b[i], sb), b[i] = norm(a[i], sb)$ 를 입력한다. 이 과정을 모든 데이타에 해준 뒤 이렇게 만들어진 데이타를 본 데이타에 포함시킨다.
 
