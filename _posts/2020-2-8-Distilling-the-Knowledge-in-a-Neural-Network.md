@@ -1,5 +1,5 @@
 ---
-layout: post
+Layout: post
 title: Distilling the Knowledge in a Neural Network
 use_math: true
 ---

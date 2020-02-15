@@ -1,5 +1,5 @@
 ---
-layout: post
+Layout: post
 title: Attention is all you need
 use_math: true
 ---
