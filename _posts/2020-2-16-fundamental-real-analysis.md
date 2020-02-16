@@ -1,6 +1,6 @@
 ---
 Layout: post
-title: fundamental real analysis
+title: Fundamental Real Analysis
 use_math: true
 ---
 
@@ -21,9 +21,19 @@ least upper bound property 는 ordered set 에서 bounded above 한 subset 은 �
 
 이러한 실수의 특성으로 인해 archimedean property, Q 의 density in R, 1-1 correspondence of function $x^{1/n}$ 을 보일 수 있다.
 
- 
+ $thm$ archimedean property : $\exist n \ s.t. \ nx < y \ for \ y \in R, \ positive \ x \in R$
 
-**실수는 존재한다. **
+$pf$ 
+
+$thm$ Q is dense in R
+
+$pf$
+
+$thm$ $\exist! y \ s.t. \ y^n=x \ for \ x\in R, integer \ n $
+
+$pf$
+
+**실수는 존재한다.**
 
 $pf$ 다음과 같이 cuts 을 정의하자. 
 
