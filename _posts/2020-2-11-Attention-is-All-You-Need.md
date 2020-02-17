@@ -38,7 +38,11 @@ Encoder 와 구조는 비슷한데, encoder 의 output에 대해 multi-head atte
 
 ### Positional encoding
 
+transformer 방식에선 위치 정보가 없기 때문에 embedding vector 에 위치 정보를 넣어줘야 한다. 임베딩과 같은 차원의 벡터를 생성하고 임베딩 벡터에 더하는 식으로 인코딩한다. positional encoding vector 을 생성하는 방식은 짝수번째 차원에서는 $sin(pos/10000^{2i \over d_{model}})$ 을 넣어주고 홀수번째 차원에서는 $cos(pos/10000^{2i \over d_{model}})$ 을 넣는다. (Pos 는 sentence 에서 word 위치, i positional encoding vector 의 element 위치)
+
 ### Attention
+
+
 
 #### - scaled-dot product attention
 
@@ -50,6 +54,6 @@ Encoder 와 구조는 비슷한데, encoder 의 output에 대해 multi-head atte
 
 ### Position-wise Feed-forward Networks
 
-
+attention 이 끝나고 $max(0, xW_{1} + b_{1})W_{2}+b_{2}$ 인 feed-forward network 를 추가하여 계산한다. 동일한 구조이지만 다른 parameter 로 각각의 layer 에 구성한다. input 과 output dimention 은 512 로 맞춰주고 FFN 내부의 차원은 2048로 했다.
 
 ###
