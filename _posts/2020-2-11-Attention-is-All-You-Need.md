@@ -42,15 +42,25 @@ transformer 방식에선 위치 정보가 없기 때문에 embedding vector 에 
 
 ### Attention
 
-
+Attention 은 기본적으로 query, set of key-value pairs에서 outputs 으로 가는 함수이고 이 함수는 query 와 key 로 만든 compabitility function 이 value 에 weighted sum 하여 만들어진다. Attention 에는 크게 scaled-dot product attention 과 additive attention 이 있다. additive attention 은 compatibility function 을 하나의 feed-forward network 로 만드는 방식이고 scale-dot product attention 은 이 논문에서 사용한 방식이며 앞으로 설명할 것이다. 논문에 따르면 두 방식 모두 이론적으로 비슷한 복잡도를 내지면 실제로는 후자의 방식이 속도와 공간 복잡도 면에서 유리하다고 한다.
 
 #### - scaled-dot product attention
 
 <img src="../imgs/singlehead.png" alt="single" style="zoom: 67%;" />
 
+이 때, attention function은 attention(Q,K,V) = $softmax({QK^T \over {\sqrt d_{k}}})V$ 가 된다. 즉, query 와 value 가 비슷해질 수록 대응되는 value 의 element 값이 커진다. 여기서 $d_{k}$ 는 query 와 key 의 dimension 인데 이것의 역수로 스케일해주는 이유는 dot-product 값이 커져서 gradient 가 작아지는 것을 막기 위함이다. 따라서 좀 더 안정적인 gradient 를 생성할 수 있다.
+
 #### - Multi-head attention
 
 <img src="../imgs/multihead.png" alt="multi" style="zoom:67%;" />
+
+
+
+Multi-head attention 에서는 Q, K, V 에 $d_{model}$ 차원의 embedding vector 를 사용하지 말고 num_head 만큼 나누고 각각을 linear projection 한 Q, K, V 에 scaled dot product attention 을 적용하는 방식이다. 즉, Embedding vector 를 X 라 할때, $Wq*X, Wk*X, Wv*X$ 로 Query(Q), Key(K), Value(V) 를 구한다. 이렇게 했을 때의 이점은, num_head 만큼의 다른 시각을 가진 query, key, value 를 제공하여 정보를 수집할 수 있어 일종의 앙상블 효과를 노린 것으로 추측된다.
+
+이렇게 만들어진 Attention 함수의 값을 concat 하여 $d_{model}$로 linear projection 한 후, 그 값을 output 으로 사용한다. 즉, 
+
+$MultiHead(Q, K, V) = Concat(head_{1}, ..., head_{8})W^O \ where \ head_{i}=Attention(QW_{i}^{Q},KW_{i}^{K},VW_{i}^{V})$ 이다. 
 
 ### Position-wise Feed-forward Networks
 
