@@ -11,7 +11,7 @@ title: Compiler
 
 컴파일러의 일반적인 구조는 다음과 같다.
 
-![compiler](../imgs/compiler_struct.png)
+<img src="../imgs/compiler_struct.png" alt="compiler" style="zoom:100%;" />
 
 1D string 인 소스 코드는 Parser 로 부터 2D dimension 으로 구조화된다. 이렇게 만들어진 트리 구조를 소스 코드 AST(abstract syntax tree) 라고 한다. AST 는 코드를 보다 분석하기 용이하다. AST 는 Type checker 를 통해, 이 프로그램이 돌아가기 전에 잘 돌아갈 것인지 결정된다. Type checker 가 syntax error 의 위험이 없다고 판단하면 IRgen 의 input 으로 들어간다.
 
