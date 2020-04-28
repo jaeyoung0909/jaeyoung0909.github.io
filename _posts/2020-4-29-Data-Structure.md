@@ -1,5 +1,5 @@
 ---
-layout: post
+Layout: post
 title: Data Structure
 use_math: true
 ---
